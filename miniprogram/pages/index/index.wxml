@@ -1,6 +1,36 @@
 <!--index.wxml-->
+
 <view class="container">
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="echo-pane">
+    {{curInputStr}}
+  </view>
+  <view class="row">
+    <view class="col" bindtap="reset" id="AC">AC</view>
+    <view class="col" bindtap="onClick" id="+/-">+/-</view>
+    <view class="col" bindtap="onClick" id="%">%</view>
+    <view class="col " bindtap="onClick" id="/">/</view>
+  </view>
+  <view class="row">
+    <view class="col" bindtap="onClick" id="7">7</view>
+    <view class="col" bindtap="onClick" id="8">8</view>
+    <view class="col" bindtap="onClick" id="9">9</view>
+    <view class="col " bindtap="onClick" id="x">x</view>
+  </view>
+  <view class="row">
+    <view class="col" bindtap="onClick" id="4">4</view>
+    <view class="col" bindtap="onClick" id="5">5</view>
+    <view class="col" bindtap="onClick" id="6">6</view>
+    <view class="col " bindtap="onClick" id="-">-</view>
+  </view>
+  <view class="row">
+    <view class="col" bindtap="onClick" id="1">1</view>
+    <view class="col" bindtap="onClick" id="2">2</view>
+    <view class="col" bindtap="onClick" id="3">3</view>
+    <view class="col" bindtap="onClick" id="+">+</view>
+  </view>
+  <view class="row">
+    <view class="col" bindtap="onClick" id="0">1</view>
+    <view class="col" bindtap="onClick" id=".">.</view>
+    <view class="col" bindtap="onClick" id="=">=</view>
   </view>
 </view>

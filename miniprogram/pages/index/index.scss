@@ -1,19 +1,16 @@
 /**index.wxss**/
-.userinfo {
+
+.row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
+  width: 100%;
+  background-color: lightblue;
 }
 
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.col {
+  flex: 1;
 }
 
-.usermotto {
-  margin-top: 200px;
+/** 回显面板 */
+.echo-pane {
+
 }
