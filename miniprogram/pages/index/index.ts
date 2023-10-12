@@ -12,6 +12,8 @@ Page({
     curOperator: '+',
     // 正在输入的内容
     curInputStr: '',
+    // 上一次输入的字符
+    prevChar: '',
   },
 
   //
@@ -19,9 +21,27 @@ Page({
   //
 
   equal() {
-    const { curResult, curInputStr } = this.data;
-    const result = curResult + Number(curInputStr);
+    const { curResult, curInputStr, curOperator } = this.data;
 
+    const operand1 = curResult;
+    const operand2 = Number(curInputStr);
+
+    let result;
+    switch (curOperator) {
+      case '+':
+        result = operand1 + operand2;
+        break;
+      case '-':
+        result = operand1 - operand2;
+        break;
+      case '*':
+        result = operand1 * operand2;
+        break;
+      case '/':
+        result = operand1 / operand2;
+        break;
+    }
+    
     this.setData({
       curResult: result,
       curInputStr: String(result),
@@ -36,6 +56,11 @@ Page({
     })
   },
 
+  /** 算术运算符 */
+  isArithOperator(char: string) {
+    return ['+', '-', '*', '/'].includes(char);
+  },
+
   //
   //  回调函数
   //
@@ -43,25 +68,33 @@ Page({
   onClick(event: any)  {
     console.log(event);
     const value = event.target.id;
+    const { prevChar, curInputStr } = this.data;
+
     switch (value) {
       case '+':
       case '-':
-      case 'x':
+      case '*':
       case '/':
         this.equal();
         this.setData({
           curOperator: value,
         });
         break;
+      case '%':
+        console.log('% do nothing')
+        break;
       case '=':
         this.equal();
         break;
       default:
-        console.log('value ->', value);
         this.setData({
-          curInputStr: this.data.curInputStr + value
+          curInputStr: (curInputStr === '0' || this.isArithOperator(prevChar)) ? value : this.data.curInputStr + value
         })
     }
+
+    this.setData({
+      prevChar: value
+    });
   },
   onLoad() {
     // @ts-ignore

@@ -4,33 +4,72 @@
   <view class="echo-pane">
     {{curInputStr}}
   </view>
+
   <view class="row">
-    <view class="col" bindtap="reset" id="AC">AC</view>
-    <view class="col" bindtap="onClick" id="+/-">+/-</view>
-    <view class="col" bindtap="onClick" id="%">%</view>
-    <view class="col " bindtap="onClick" id="/">/</view>
+    <view class="col" bindtap="reset" id="AC">
+      <view class="btn gray-btn">AC</view>
+    </view>
+    <view class="col" bindtap="onClick" id="+/-">
+      <view class="btn gray-btn">+/-</view>
+    </view>
+    <view class="col" bindtap="onClick" id="%">
+      <view class="btn gray-btn">%</view>
+    </view>
+    <view class="col " bindtap="onClick" id="/">
+      <view class="btn black-btn">/</view>
+    </view>
   </view>
   <view class="row">
-    <view class="col" bindtap="onClick" id="7">7</view>
-    <view class="col" bindtap="onClick" id="8">8</view>
-    <view class="col" bindtap="onClick" id="9">9</view>
-    <view class="col " bindtap="onClick" id="x">x</view>
+    <view class="col" bindtap="onClick" id="7">
+      <view class="btn">7</view>
+    </view>
+    <view class="col" bindtap="onClick" id="8">
+      <view class="btn">8</view>
+    </view>
+    <view class="col" bindtap="onClick" id="9">
+      <view class="btn">9</view>
+    </view>
+    <view class="col" bindtap="onClick" id="*">
+      <view class="btn black-btn">X</view>
+    </view>
   </view>
   <view class="row">
-    <view class="col" bindtap="onClick" id="4">4</view>
-    <view class="col" bindtap="onClick" id="5">5</view>
-    <view class="col" bindtap="onClick" id="6">6</view>
-    <view class="col " bindtap="onClick" id="-">-</view>
+    <view class="col" bindtap="onClick" id="4">
+      <view class="btn">4</view>
+    </view>
+    <view class="col" bindtap="onClick" id="5">
+      <view class="btn">5</view>
+    </view>
+    <view class="col" bindtap="onClick" id="6">
+      <view class="btn">6</view>
+    </view>
+    <view class="col" bindtap="onClick" id="-">
+      <view class="btn black-btn">-</view>
+    </view>
   </view>
   <view class="row">
-    <view class="col" bindtap="onClick" id="1">1</view>
-    <view class="col" bindtap="onClick" id="2">2</view>
-    <view class="col" bindtap="onClick" id="3">3</view>
-    <view class="col" bindtap="onClick" id="+">+</view>
+    <view class="col" bindtap="onClick" id="1">
+      <view class="btn">1</view>
+    </view>
+    <view class="col" bindtap="onClick" id="2">
+      <view class="btn">2</view>
+    </view>
+    <view class="col" bindtap="onClick" id="3">
+      <view class="btn">3</view>
+    </view>
+    <view class="col" bindtap="onClick" id="+">
+      <view class="btn black-btn">+</view>
+    </view>
   </view>
   <view class="row">
-    <view class="col" bindtap="onClick" id="0">1</view>
-    <view class="col" bindtap="onClick" id=".">.</view>
-    <view class="col" bindtap="onClick" id="=">=</view>
+    <view class="col span2" bindtap="onClick" id="0">
+      <view class="btn btn0">0</view>
+    </view>
+    <view class="col" bindtap="onClick" id=".">
+      <view class="btn">.</view>
+    </view>
+    <view class="col" bindtap="onClick" id="=">
+      <view class="btn black-btn">=</view>
+    </view>
   </view>
 </view>

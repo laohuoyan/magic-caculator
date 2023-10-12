@@ -1,13 +1,40 @@
 /**index.wxss**/
+.container {
+  background-color: #000;
+}
 
 .row {
   display: flex;
   width: 100%;
-  background-color: lightblue;
 }
 
 .col {
   flex: 1;
+  padding: 4rpx;
+}
+
+.btn0 {
+  flex: 2;
+  aspect-ratio: 1/0.5;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: rgb(54, 54, 54);
+
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.gray-btn {
+  background-color: rgb(166, 166, 166);
+}
+
+.orange-btn {
+  background-color: rgb(233, 158, 40);
 }
 
 /** 回显面板 */
