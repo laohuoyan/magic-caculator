@@ -23,7 +23,7 @@
   },
   "include": [
     "./**/*.ts"
-  ],
+, "miniprogram/pages/index/caculate.js", "miniprogram/pages/index/calculate.js"  ],
   "exclude": [
     "node_modules"
   ]

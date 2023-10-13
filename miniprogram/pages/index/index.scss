@@ -1,6 +1,16 @@
 /**index.wxss**/
-.container {
-  background-color: #000;
+
+/** 回显面板 */
+.echo-pane {
+  padding: 20rpx;
+  margin-top: 100rpx;
+  margin-bottom: 100rpx;
+
+  text-align: right;
+}
+
+/** 操作面板 */
+.op-pane {
 }
 
 .row {
@@ -10,23 +20,26 @@
 
 .col {
   flex: 1;
-  padding: 4rpx;
+  padding: 20rpx;
+}
+
+.span2 {
+  flex: 2;
 }
 
 .btn0 {
-  flex: 2;
-  aspect-ratio: 1/0.5;
+  aspect-ratio: 1/0.5!important;
 }
 
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  
   background-color: rgb(54, 54, 54);
 
   aspect-ratio: 1;
-  border-radius: 50%;
+  border-radius: 99999rpx;
 }
 
 .gray-btn {
@@ -35,9 +48,4 @@
 
 .orange-btn {
   background-color: rgb(233, 158, 40);
-}
-
-/** 回显面板 */
-.echo-pane {
-
 }
