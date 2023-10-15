@@ -11,26 +11,25 @@ Page({
     // 当前的操作符（加减乘除）
     curOperator: '+',
     // 正在输入的内容
-    curInputStr: '',
-    formattedInputStr: '',
+    curInputStr: '0',
+    formattedInputStr: '0',
     // 上一次输入的字符
     prevChar: '',
   },
 
-  observers: {
-    'curInputStr': function(newStr: string) {
-      console.log(formatWithComma(newStr));
-      // 在这里定义处理字符串的逻辑
-      // 例如，将字符串转换为大写
-      this.setData({
-        formattedInputStr: formatWithComma(newStr)
-      });
-    }
-  },
+  //
+  //
+  //
 
-  //
-  //
-  //
+  /**
+   *  TODO: formattedInputStr 应该通过监听属性变化更新
+   */
+  setCurInputStr(str: string) {
+      this.setData({
+          curInputStr: str,
+          formattedInputStr: formatWithComma(str)
+      })
+  },
 
   /**
    * 计算当前结果
@@ -41,8 +40,8 @@ Page({
     this.setData({
       stack: [],
       curResult: result,
-      curInputStr: String(result),
     })
+    this.setCurInputStr(String(result))
   },
 
   /**
@@ -98,20 +97,18 @@ Page({
         }
         break;
       case '%':
-        this.setData({
-          curInputStr: String(Number(curInputStr) * 0.01)
-        })
+        this.setCurInputStr(String(Number(curInputStr) * 0.01))
         break;
       case '=':
         this.pushCurInputStr();
         this.calc();
         break;
       default:
-        this.setData({
-          curInputStr: (curInputStr === '0' || this.isArithOperator(prevChar))
-            ? value
-            : curInputStr + value
-        })
+        this.setCurInputStr(
+            (curInputStr === '0' || this.isArithOperator(prevChar))
+                ? value
+                : curInputStr + value
+        )
     }
 
     this.setData({

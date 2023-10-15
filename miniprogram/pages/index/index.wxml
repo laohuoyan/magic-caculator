@@ -1,9 +1,10 @@
 <!--index.wxml-->
+
 <view class="container">
   <view style="flex: 1"></view>
   
   <view class="echo-pane">
-    {{curInputStr}}
+    {{formattedInputStr}}
   </view>
 
   <view class="op-pane">
