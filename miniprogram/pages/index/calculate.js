@@ -7,73 +7,63 @@
  * 这种方法避免了直接使用eval()或new Function()，并且在计算数学表达式时更加安全。
  */
 
-var operators = {
-  '+': function(a, b) { return a + b; },
-  '-': function(a, b) { return a - b; },
-  '*': function(a, b) { return a * b; },
-  '/': function(a, b) { return a / b; }
-};
-
 export default function calculate(expression) {
-  console.log(expression);
-  
-  function isDigit(char) {
-      return /\d/.test(char);
+  var operators = {
+      '+': function (a, b) { return a + b; },
+      '-': function (a, b) { return a - b; },
+      '*': function (a, b) { return a * b; },
+      '/': function (a, b) { return a / b; }
+  };
+
+  function isOperator(token) {
+      return token in operators;
   }
 
-  function evaluateRPN(tokens) {
-      var stack = [];
-    
-      tokens.forEach(function(token) {
-          if (isDigit(token)) {
-              stack.push(parseFloat(token));
-          } else if (token in operators) {
-              var b = stack.pop();
-              var a = stack.pop();
-              stack.push(operators[token](a, b));
-          }
-      });
-
-      return stack[0];
+  function precedence(operator) {
+      if (operator === '+' || operator === '-') {
+          return 1;
+      }
+      if (operator === '*' || operator === '/') {
+          return 2;
+      }
+      return 0;
   }
 
-  function infixToRPN(tokens) {
+  function shuntingYard(tokens) {
       var output = [];
-      var operatorStack = [];
+      var stack = [];
 
-      var precedence = {
-          '+': 1,
-          '-': 1,
-          '*': 2,
-          '/': 2
-      };
-
-      tokens.forEach(function(token) {
-          if (isDigit(token)) {
-              output.push(token);
-          } else if (token in operators) {
-              while (operatorStack.length > 0 && operators[operatorStack[operatorStack.length - 1]] >= operators[token]) {
-                  output.push(operatorStack.pop());
+      tokens.forEach(function (token) {
+          if (!isNaN(token)) {
+              output.push(parseFloat(token));
+          } else if (isOperator(token)) {
+              while (isOperator(stack[stack.length - 1]) && precedence(token) <= precedence(stack[stack.length - 1])) {
+                  output.push(stack.pop());
               }
-              operatorStack.push(token);
-          } else if (token === '(') {
-              operatorStack.push(token);
-          } else if (token === ')') {
-              while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== '(') {
-                  output.push(operatorStack.pop());
-              }
-              operatorStack.pop(); // Pop '(' from the stack
+              stack.push(token);
           }
       });
 
-      while (operatorStack.length > 0) {
-          output.push(operatorStack.pop());
+      while (stack.length > 0) {
+          output.push(stack.pop());
       }
 
       return output;
   }
 
-  var tokens = expression.match(/(\d+(\.\d+)?|[+\-*/()])/g);
-  var rpn = infixToRPN(tokens);
-  return evaluateRPN(rpn);
+  var tokens = expression.match(/(\d+(\.\d+)?|[+\-*/])/g);
+  var postfixTokens = shuntingYard(tokens);
+  var stack = [];
+
+  postfixTokens.forEach(function (token) {
+      if (!isNaN(token)) {
+          stack.push(token);
+      } else if (isOperator(token)) {
+          var b = stack.pop();
+          var a = stack.pop();
+          stack.push(operators[token](a, b));
+      }
+  });
+
+  return stack[0];
 }

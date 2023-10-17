@@ -37,6 +37,7 @@ Page({
   calc() {
     const { stack } = this.data;
     const result = calculate(stack.join(' '));
+    console.log(stack.join(' '));
     this.setData({
       stack: [],
       curResult: result,
@@ -49,10 +50,10 @@ Page({
    */
   reset() {
     this.setData({
-      curInputStr: "0",
       curResult: 0,
       curOperator: '+'
     })
+    this.setCurInputStr('0')
   },
 
   /** 算术运算符 */
@@ -63,7 +64,8 @@ Page({
   pushCurInputStr() {
     const { curInputStr, stack } = this.data;
     // 有可能是负数，所以加个括号
-    stack.push(`(${curInputStr})`);
+    stack.push(curInputStr);
+    // stack.push(`(${curInputStr})`);
   },
 
   //

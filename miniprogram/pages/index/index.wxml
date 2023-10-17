@@ -33,7 +33,7 @@
         <view id="9" class="btn">9</view>
       </view>
       <view class="col" bindtap="onClick">
-        <view id="*" class="btn orange-btn">X</view>
+        <view id="*" class="btn orange-btn">×</view>
       </view>
     </view>
     <view class="row">
