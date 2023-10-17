@@ -3,7 +3,7 @@
 <view class="container">
   <view style="flex: 1"></view>
   
-  <view class="echo-pane">
+  <view class="echo-pane" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
     {{formattedInputStr}}
   </view>
 

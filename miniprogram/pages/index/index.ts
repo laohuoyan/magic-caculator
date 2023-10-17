@@ -15,6 +15,8 @@ Page({
     formattedInputStr: '0',
     // 上一次输入的字符
     prevChar: '',
+    // 触摸对象
+    startTouch: null,
   },
 
   //
@@ -68,6 +70,20 @@ Page({
     // stack.push(`(${curInputStr})`);
   },
 
+  // 删除最后一个字符
+  deleteLastChar() {
+    const { curInputStr } = this.data;
+    const len = curInputStr.length;
+    if (len <= 1) {
+      this.setCurInputStr('0');
+      return;
+    }
+
+    this.setCurInputStr(
+      curInputStr.slice(0, len - 1)
+    );
+  },
+
   //
   //  回调函数
   //
@@ -117,4 +133,26 @@ Page({
       prevChar: value
     });
   },
+
+  handleTouchStart(evt: any) {
+    const touch = evt.touches[0];
+    this.setData({
+      startTouch: touch
+    })
+  },
+
+  handleTouchEnd(evt: any) {
+    const endTouch = evt.changedTouches[0];
+    const { startTouch } = this.data;
+    if (!endTouch || !startTouch) return;
+    
+    // 向右划
+    if (endTouch.pageX - (startTouch as any).pageX > 0) {
+      this.deleteLastChar();
+    }
+
+    this.setData({
+      startTouch: undefined,
+    });
+  }
 })
